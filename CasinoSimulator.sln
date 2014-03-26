@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasinoSimulator", "CasinoSimulator\CasinoSimulator.csproj", "{0AE8B454-377B-40E8-97BF-BB0948FDEE2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Craps", "Craps\Craps.csproj", "{9FB605E0-61AD-4C86-868B-42D4E4D58ED9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomNumberGenerator", "RandomNumberGenerator\RandomNumberGenerator.csproj", "{B5844DC7-FAA7-4491-85E9-81A8447689BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AE8B454-377B-40E8-97BF-BB0948FDEE2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AE8B454-377B-40E8-97BF-BB0948FDEE2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AE8B454-377B-40E8-97BF-BB0948FDEE2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AE8B454-377B-40E8-97BF-BB0948FDEE2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FB605E0-61AD-4C86-868B-42D4E4D58ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FB605E0-61AD-4C86-868B-42D4E4D58ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FB605E0-61AD-4C86-868B-42D4E4D58ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FB605E0-61AD-4C86-868B-42D4E4D58ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5844DC7-FAA7-4491-85E9-81A8447689BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5844DC7-FAA7-4491-85E9-81A8447689BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5844DC7-FAA7-4491-85E9-81A8447689BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5844DC7-FAA7-4491-85E9-81A8447689BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,7 @@
+C:\Users\tmacblane\Documents\Visual Studio 2013\Projects\CasinoSimulator\Craps\bin\Debug\Craps.dll
+C:\Users\tmacblane\Documents\Visual Studio 2013\Projects\CasinoSimulator\Craps\bin\Debug\Craps.pdb
+C:\Users\tmacblane\Documents\Visual Studio 2013\Projects\CasinoSimulator\Craps\obj\Debug\Craps.csprojResolveAssemblyReference.cache
+C:\Users\tmacblane\Documents\Visual Studio 2013\Projects\CasinoSimulator\Craps\obj\Debug\Craps.dll
+C:\Users\tmacblane\Documents\Visual Studio 2013\Projects\CasinoSimulator\Craps\obj\Debug\Craps.pdb
+C:\Users\tmacblane\Documents\Visual Studio 2013\Projects\CasinoSimulator\Craps\bin\Debug\RandomNumberGenerator.dll
+C:\Users\tmacblane\Documents\Visual Studio 2013\Projects\CasinoSimulator\Craps\bin\Debug\RandomNumberGenerator.pdb
