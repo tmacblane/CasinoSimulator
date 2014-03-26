@@ -119,15 +119,23 @@ namespace Craps
 			this.BankRoll = this.InitialBankRoll;
 			int maxBetReachedCount = 0;
 			int winLossWinReachedCount = 0;
+			int startOverCount = 0;
 			
 			foreach(List<int> diceRollList in this.RollDictionary.Values)
 			{
 				if(winStreak > 2)
 				{
-					this.BetAmount = betAmounts[0];
+					betAmountIndex = 0;
 				}
 
-				betAmountIndex = betAmounts.IndexOf(this.BetAmount);
+				//if(this.BetAmount > 5)
+				//{
+				//	betAmountIndex = 0;
+
+				//	startOverCount++;
+				//}
+
+				this.BetAmount = betAmounts[betAmountIndex];
 
 				int diceTotal = diceRollList[0] + diceRollList[1];
 
@@ -181,13 +189,18 @@ namespace Craps
 
 					winLossRecord.Add("L");
 				}
-
-				this.BetAmount = betAmounts[betAmountIndex];
 			}
 
+			Console.WriteLine();
+			Console.Write("Ending Balance: \t\t");
 			Console.WriteLine(this.BankRoll);
+			Console.Write("Max Bet Reached: \t\t");
 			Console.WriteLine(maxBetReachedCount);
+			Console.Write("WinLossWin Reached: \t\t");
 			Console.WriteLine(winLossWinReachedCount);
+			Console.Write("Start Over Betting Reached: \t");
+			Console.Write(startOverCount);
+			Console.WriteLine();
 		}
 
 		#endregion
