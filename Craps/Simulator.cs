@@ -7,202 +7,244 @@ using NPack;
 
 namespace Craps
 {
-	public class Simulator
-	{
-		#region Fields
+    public class Simulator
+    {
+        #region Fields
 
-		public int NumberOfSimulationsToRun;
-		public int FirstDieNumber;
-		public int SecondDieNumber;
-		public int BaseBetAmount;
-		public int BetAmount;
-		public double InitialBankRoll;
-		public double BankRoll;
+        public int NumberOfSimulationsToRun;
+        public int FirstDieNumber;
+        public int SecondDieNumber;
+        public int BaseBetAmount;
+        public int BetAmount;
+        public double InitialBankRoll;
+        public double BankRoll;
+        public int GamesPlayed;
+        public int GamesWon;
+        public double TotalWonLoss = 0;
 
-		public List<int> DieNumberList = new List<int>(new int[] { 1, 2, 3, 4, 5, 6 });
-		public List<int> WinningFieldNumbers = new List<int>(new int[] { 2, 3, 4, 9, 10, 11, 12 });
-		public Dictionary<int, List<int>> RollDictionary = new Dictionary<int, List<int>>();
+        public List<int> DieNumberList = new List<int>(new int[] { 1, 2, 3, 4, 5, 6 });
+        public List<int> WinningFieldNumbers = new List<int>(new int[] { 2, 3, 4, 9, 10, 11, 12 });
+        public Dictionary<int, List<int>> RollDictionary = new Dictionary<int, List<int>>();
 
-		MersenneTwister MersenneTwister = new MersenneTwister(new Random().Next(0, 2000000));
+        MersenneTwister MersenneTwister = new MersenneTwister(new Random().Next(0, 2000000));
 
-		#endregion
+        #endregion
 
-		#region Type specific methods
+        #region Type specific methods
 
-		public void RunSimulator()
-		{
-			this.InitialBankRoll = this.SetInitialBankRoll();
-			this.BaseBetAmount = this.SetBaseBetAmount();
-			this.NumberOfSimulationsToRun = this.SetNumberOfSimulationsToRun();
+        public void RunSimulator()
+        {
+            this.InitialBankRoll = this.SetInitialBankRoll();
+            this.BaseBetAmount = this.SetBaseBetAmount();
+            this.NumberOfSimulationsToRun = this.SetNumberOfSimulationsToRun();
 
-			this.RollDice(this.NumberOfSimulationsToRun);
-			this.Fibonacci();
-			// Pick Simulation
-		}
+            this.RollDice(this.NumberOfSimulationsToRun);
+            this.Fibonacci();
+            // Pick Simulation
+        }
 
-		#endregion
+        #endregion
 
-		#region Helpers
+        #region Helpers
 
-		private double SetInitialBankRoll()
-		{
-			Console.Write("Enter Starting Bankroll: ");
-			string keyboardInput = Console.ReadLine();
-			double baseBet;
+        private double SetInitialBankRoll()
+        {
+            Console.Write("Enter Starting Bankroll: ");
+            string keyboardInput = Console.ReadLine();
+            double baseBet;
 
-			while(!double.TryParse(keyboardInput, out baseBet))
-			{
-				Console.WriteLine("You have entered an invalid value, try again.");
-				Console.Write("Enter Starting Bankroll: ");
-				keyboardInput = Console.ReadLine();
-			}
+            while (!double.TryParse(keyboardInput, out baseBet))
+            {
+                Console.WriteLine("You have entered an invalid value, try again.");
+                Console.Write("Enter Starting Bankroll: ");
+                keyboardInput = Console.ReadLine();
+            }
 
-			return baseBet;
-		}
+            return baseBet;
+        }
 
-		private int SetBaseBetAmount()
-		{
-			Console.Write("Enter Base Bet: ");
-			string keyboardInput = Console.ReadLine();
-			int baseBet;
+        private int SetBaseBetAmount()
+        {
+            Console.Write("Enter Base Bet: ");
+            string keyboardInput = Console.ReadLine();
+            int baseBet;
 
-			while(!int.TryParse(keyboardInput, out baseBet))
-			{
-				Console.WriteLine("You have entered an invalid value, try again.");
-				Console.Write("Enter Base Bet: ");
-				keyboardInput = Console.ReadLine();
-			}
+            while (!int.TryParse(keyboardInput, out baseBet))
+            {
+                Console.WriteLine("You have entered an invalid value, try again.");
+                Console.Write("Enter Base Bet: ");
+                keyboardInput = Console.ReadLine();
+            }
 
-			return baseBet;
-		}
+            return baseBet;
+        }
 
-		private int SetNumberOfSimulationsToRun()
-		{
-			Console.Write("Number of simulations to run: ");
-			string keyboardInput = Console.ReadLine();
-			int numberOfSimulationsToRun;
+        private int SetNumberOfSimulationsToRun()
+        {
+            Console.Write("Number of simulations to run: ");
+            string keyboardInput = Console.ReadLine();
+            int numberOfSimulationsToRun;
 
-			while(!int.TryParse(keyboardInput, out numberOfSimulationsToRun))
-			{
-				Console.WriteLine("You have entered an invalid value, try again.");
-				Console.Write("Number of simulations to run: ");
-				keyboardInput = Console.ReadLine();
-			}
+            while (!int.TryParse(keyboardInput, out numberOfSimulationsToRun))
+            {
+                Console.WriteLine("You have entered an invalid value, try again.");
+                Console.Write("Number of simulations to run: ");
+                keyboardInput = Console.ReadLine();
+            }
 
-			return numberOfSimulationsToRun;
-		}
+            return numberOfSimulationsToRun;
+        }
 
-		private void RollDice()
-		{
-			this.FirstDieNumber = this.DieNumberList[MersenneTwister.Next(this.DieNumberList.Count())];
-			this.SecondDieNumber = this.DieNumberList[MersenneTwister.Next(this.DieNumberList.Count())];
+        private void RollDice()
+        {
+            this.FirstDieNumber = this.DieNumberList[MersenneTwister.Next(this.DieNumberList.Count())];
+            this.SecondDieNumber = this.DieNumberList[MersenneTwister.Next(this.DieNumberList.Count())];
 
-			this.RollDictionary.Add(this.RollDictionary.Count + 1, new List<int>(new int[] { this.FirstDieNumber, this.SecondDieNumber }));
-		}
+            this.RollDictionary.Add(this.RollDictionary.Count + 1, new List<int>(new int[] { this.FirstDieNumber, this.SecondDieNumber }));
+        }
 
-		private void RollDice(int numberOfSimulationsToRun)
-		{
-			for(int i = 1; i <= this.NumberOfSimulationsToRun; i++)
-			{
-				this.RollDice();
-			}
-		}
+        private void RollDice(int numberOfSimulationsToRun)
+        {
+            for (int i = 1; i <= this.NumberOfSimulationsToRun; i++)
+            {
+                this.RollDice();
+            }
+        }
 
-		private void Fibonacci()
-		{
-			List<int> betAmounts = new List<int>(new int[] { 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 });
-			List<string> winLossRecord = new List<string>();
-			int betAmountIndex = 0;
-			//bool betWon = false;
-			int winStreak = 0;
-			this.BetAmount = this.BaseBetAmount;
-			this.BankRoll = this.InitialBankRoll;
-			int maxBetReachedCount = 0;
-			int winLossWinReachedCount = 0;
-			int startOverCount = 0;
-			
-			foreach(List<int> diceRollList in this.RollDictionary.Values)
-			{
-				if(winStreak > 2)
-				{
-					betAmountIndex = 0;
-				}
+        private void Fibonacci()
+        {
+            List<int> betAmounts = new List<int>(new int[] { 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 });
+            List<string> winLossRecord = new List<string>();
+            int betAmountIndex = 0;
+            //bool betWon = false;
+            int winStreak = 0;
+            this.BetAmount = this.BaseBetAmount;
+            this.BankRoll = this.InitialBankRoll;
+            int maxBetReachedCount = 0;
+            int winLossWinReachedCount = 0;
+            int startOverCount = 0;
+            int maxToLose = 200;
+            int maxToWin = 100;
 
-				//if(this.BetAmount > 5)
-				//{
-				//	betAmountIndex = 0;
+            foreach (List<int> diceRollList in this.RollDictionary.Values)
+            {
+                // Check if game amount min or max has been reached
+                if (this.BankRoll <= this.InitialBankRoll - maxToLose || this.BankRoll >= this.InitialBankRoll + maxToWin)
+                {
+                    this.TotalWonLoss = this.TotalWonLoss + this.BankRoll;
+                    this.GamesPlayed++;
 
-				//	startOverCount++;
-				//}
+                    if (this.BankRoll >= this.InitialBankRoll + maxToWin)
+                    {
+                        this.GamesWon++;
+                    }
 
-				this.BetAmount = betAmounts[betAmountIndex];
+                    // Print Out results 
+                    //Console.WriteLine();
+                    //Console.WriteLine("Game Finished");
+                    //Console.Write("Ending Balance: \t\t");
+                    //Console.WriteLine(this.BankRoll);
+                    //Console.Write("Max Bet Reached: \t\t");
+                    //Console.WriteLine(maxBetReachedCount);
+                    //Console.Write("WinLossWin Reached: \t\t");
+                    //Console.WriteLine(winLossWinReachedCount);
 
-				int diceTotal = diceRollList[0] + diceRollList[1];
+                    // Reset Betting for another game
+                    this.BankRoll = this.InitialBankRoll;
+                    betAmountIndex = 0;
+                    maxBetReachedCount = 0;
+                    winLossRecord.Clear();
+                    winLossWinReachedCount = 0;
+                    startOverCount = 0;
+                    winStreak = 0;
+                }
+                else
+                {
+                    // Continue Gambling
 
-				if(this.WinningFieldNumbers.Contains(diceTotal))
-				{
-					if(diceTotal == 2)
-					{
-						this.BankRoll = this.BankRoll + (this.BetAmount * 2);
-						betAmountIndex = 0;
-					}
-					else if(diceTotal == 12)
-					{
-						this.BankRoll = this.BankRoll + (this.BetAmount * 3);
-						betAmountIndex = 0;
-					}
-					else
-					{
-						this.BankRoll = this.BankRoll + this.BetAmount;
-					}
+                    if (winStreak > 2)
+                    {
+                        betAmountIndex = 0;
+                    }
 
-					winStreak++;
+                    this.BetAmount = betAmounts[betAmountIndex];
 
-					if(betAmountIndex > 0)
-					{
-						betAmountIndex--;
-					}
+                    int diceTotal = diceRollList[0] + diceRollList[1];
 
-					winLossRecord.Add("W");
+                    if (this.WinningFieldNumbers.Contains(diceTotal))
+                    {
+                        if (diceTotal == 2)
+                        {
+                            this.BankRoll = this.BankRoll + (this.BetAmount * 2);
+                            betAmountIndex = 0;
+                        }
+                        else if (diceTotal == 12)
+                        {
+                            this.BankRoll = this.BankRoll + (this.BetAmount * 3);
+                            betAmountIndex = 0;
+                        }
+                        else
+                        {
+                            this.BankRoll = this.BankRoll + this.BetAmount;
+                        }
 
-					if(winLossRecord.Count >= 3 && winLossRecord[winLossRecord.Count - 3] == "W" && winLossRecord[winLossRecord.Count - 2] == "L" && winLossRecord[winLossRecord.Count - 1] == "W")
-					{
-						betAmountIndex = 0;
-						winLossWinReachedCount++;
-					}
-				}
-				else
-				{
-					this.BankRoll = this.BankRoll - this.BetAmount;
-					winStreak = 0;
-					//betWon = false;
+                        winStreak++;
 
-					if(betAmountIndex < betAmounts.Count - 1)
-					{
-						betAmountIndex++;
-					}
-					else
-					{
-						betAmountIndex = 0;
-						maxBetReachedCount++;
-					}
+                        if (betAmountIndex > 0)
+                        {
+                            betAmountIndex--;
+                        }
 
-					winLossRecord.Add("L");
-				}
-			}
+                        winLossRecord.Add("W");
 
-			Console.WriteLine();
-			Console.Write("Ending Balance: \t\t");
-			Console.WriteLine(this.BankRoll);
-			Console.Write("Max Bet Reached: \t\t");
-			Console.WriteLine(maxBetReachedCount);
-			Console.Write("WinLossWin Reached: \t\t");
-			Console.WriteLine(winLossWinReachedCount);
-			Console.Write("Start Over Betting Reached: \t");
-			Console.Write(startOverCount);
-			Console.WriteLine();
-		}
+                        if (winLossRecord.Count >= 3 && winLossRecord[winLossRecord.Count - 3] == "W" && winLossRecord[winLossRecord.Count - 2] == "L" && winLossRecord[winLossRecord.Count - 1] == "W")
+                        {
+                            betAmountIndex = 0;
+                            winLossWinReachedCount++;
+                        }
+                    }
+                    else
+                    {
+                        this.BankRoll = this.BankRoll - this.BetAmount;
+                        winStreak = 0;
+                        //betWon = false;
 
-		#endregion
-	}
+                        if (betAmountIndex < betAmounts.Count - 1)
+                        {
+                            betAmountIndex++;
+                        }
+                        else
+                        {
+                            betAmountIndex = 0;
+                            maxBetReachedCount++;
+                        }
+
+                        winLossRecord.Add("L");
+                    }
+                }
+            }
+
+            // Print Out results
+            Console.WriteLine();
+            Console.Write("Games Played: \t\t");
+            Console.WriteLine(this.GamesPlayed);
+            Console.Write("Games Won: \t\t");
+            Console.WriteLine(this.GamesWon);
+            Console.Write("Total Balance: \t\t");
+            Console.WriteLine(this.TotalWonLoss);
+            Console.WriteLine();
+            Console.WriteLine("Scenario Over");
+            Console.Write("Remaing Balance: \t");
+            Console.WriteLine(this.BankRoll);
+            //Console.Write("Max Bet Reached: \t\t");
+            //Console.WriteLine(maxBetReachedCount);
+            //Console.Write("WinLossWin Reached: \t\t");
+            //Console.WriteLine(winLossWinReachedCount);
+            //Console.Write("Start Over Betting Reached: \t");
+            //Console.Write(startOverCount);
+            Console.WriteLine();
+        }
+
+        #endregion
+    }
 }

@@ -8,3 +8,13 @@ C:\Users\tmacblane\Documents\Visual Studio 2013\Projects\CasinoSimulator\CasinoS
 C:\Users\tmacblane\Documents\Visual Studio 2013\Projects\CasinoSimulator\CasinoSimulator\obj\Debug\CasinoSimulator.pdb
 C:\Users\tmacblane\Documents\Visual Studio 2013\Projects\CasinoSimulator\CasinoSimulator\bin\Debug\RandomNumberGenerator.dll
 C:\Users\tmacblane\Documents\Visual Studio 2013\Projects\CasinoSimulator\CasinoSimulator\bin\Debug\RandomNumberGenerator.pdb
+D:\Projects\CasinoSimulator\CasinoSimulator\bin\Debug\CasinoSimulator.exe.config
+D:\Projects\CasinoSimulator\CasinoSimulator\obj\Debug\CasinoSimulator.exe
+D:\Projects\CasinoSimulator\CasinoSimulator\obj\Debug\CasinoSimulator.pdb
+D:\Projects\CasinoSimulator\CasinoSimulator\bin\Debug\CasinoSimulator.exe
+D:\Projects\CasinoSimulator\CasinoSimulator\bin\Debug\CasinoSimulator.pdb
+D:\Projects\CasinoSimulator\CasinoSimulator\bin\Debug\Craps.dll
+D:\Projects\CasinoSimulator\CasinoSimulator\bin\Debug\RandomNumberGenerator.dll
+D:\Projects\CasinoSimulator\CasinoSimulator\bin\Debug\Craps.pdb
+D:\Projects\CasinoSimulator\CasinoSimulator\bin\Debug\RandomNumberGenerator.pdb
+D:\Projects\CasinoSimulator\CasinoSimulator\obj\Debug\CasinoSimulator.csprojResolveAssemblyReference.cache
